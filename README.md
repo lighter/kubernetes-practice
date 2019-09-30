@@ -61,4 +61,10 @@ $ kubectl get rc
 
 # 增加 pod 的數量
 $ kubectl scale --replicas=<NUMBER> -f <REPLICATION-CONTROLLER.yaml>
+
+# 刪除 replication controller，原有的 pod 還可運作
+$ kubectl delete rc my-replication-controller --cascade=false
+
+# 強迫跟著刪除 pod
+$ kubectl delete pods <POD> --grace-period=0 --force
 ```
