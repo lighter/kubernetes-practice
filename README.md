@@ -49,3 +49,16 @@ $ kubectl get pod --show-labels
 # 新增 pod 的 labels
 $ kubectl label pods <POD> <LABEL-KEY>=<LABEL-VALUE>
 ```
+
+
+## Replication controller
+
+指定同時有多少個相同的 pods 運作
+
+```
+# 取得目前 replication controller
+$ kubectl get rc
+
+# 增加 pod 的數量
+$ kubectl scale --replicas=<NUMBER> -f <REPLICATION-CONTROLLER.yaml>
+```

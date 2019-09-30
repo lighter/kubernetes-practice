@@ -1,0 +1,18 @@
+apiVersion: v1
+kind: ReplicationController
+metadata:
+  name: replication-controller
+spec:
+  replicas: 3
+  selector:
+    app: hellow-pod-v1
+  template:
+    metadata:
+      labels:
+        app: hellow-pod-v1
+    spec:
+      containers:
+      - name: my-pod
+        image: lighterlai/docker-demo
+        ports:
+        - containerPort: 3000
