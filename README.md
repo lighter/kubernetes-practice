@@ -68,3 +68,45 @@ $ kubectl delete rc my-replication-controller --cascade=false
 # 強迫跟著刪除 pod
 $ kubectl delete pods <POD> --grace-period=0 --force
 ```
+
+
+## Deployment 常用相關指令
+
+| Deployment 指令                                                               | 解說                                        |
+| ----------------------------------------------------------------------------- | ------------------------------------------ |
+| kubectl get deployments                                                       | 取得目前 k8s 的 deployments 資訊             |
+| kubectl get rs                                                                | 取得目前 k8s 的 replication set 資訊         |
+| kubectl describe deploy <DEPLOYMENT-NAME>                                     | 取得指定 deployment 資訊                     |
+| kubectl set image deploy/ <DEPLOYMENT-NAME> <POD-NAME>:<IMAGE-PATH>:<VERSION> | 將 deployment 管理的 pod 升級到特定 image 版本 |
+| kubectl edit deployment <DEPLOYMENT-NAME>                                     | 編輯特定 deployment                          |
+| kubectl rollout status deploy <DEPLOYMENT-NAME>                               | 查看特定 deployment 升級狀態                  |
+| kubectl rollout history deploy <DEPLOYMENT-NAME>                              | 查看特定 deployment 升級歷史紀錄               |
+| kubectl rollout undo deploy <DEPLOYMENT-NAME>                                 | 返回上一個版本 pod                            |
+| kubectl rollout undo deploy <DEPLOYMENT-NAME>  --to-revision=<N>              | 返回到指定版本 pod                            |
+
+```
+# deployment service
+$ kubectl expose deploy <DEPLOYMENT-NAME> --type=NodePort --name=<DEPLOYMENT-SERVICE-NAME>
+
+# rollout docker image
+$ kubectl set image deploy/<DEPLOYMENT-NAME> <POD-NAME>=<IMAGE-NAME>:<VERESION-TAG>
+
+# 查看 rollout status
+$ kubectl rollout status deploy <DEPLOYMENT-NAME>
+
+# 編輯 deployment
+$ kubectl edit deploy <DEPLOYMENT-NAME>
+
+# 查看 deploy rollout history
+$ kubectl rollout history deploy <DEPLOYMENT-NAME>
+
+# 紀錄每次 rollout 
+$ kubectl set image deploy/<DEPLOYMENT-NAME> <POD-NAME>=<IMAGE-NAME>:<VERSION-TAG> --record
+
+# 返回上一版 deployment
+$ kubectl rollout undo deploy <DEPLOYMENT-NAME>
+
+# 指定回到某個版本
+# N 可用 history 查看第幾個
+$ kubectl rollout undo deploy <DEPLOYMENT-NAME> --to-revision=<N>
+```
