@@ -110,3 +110,19 @@ $ kubectl rollout undo deploy <DEPLOYMENT-NAME>
 # N 可用 history 查看第幾個
 $ kubectl rollout undo deploy <DEPLOYMENT-NAME> --to-revision=<N>
 ```
+
+
+## Service 相關指令
+
+```
+# 取得 service 狀態
+$ kubectl get svc
+NAME                    TYPE        CLUSTER-IP       EXTERNAL-IP   PORT(S)          AGE
+hello-service           NodePort    10.100.14.92     <none>        3000:30390/TCP   13s
+```
+
+NodePort 可指定 3000~32767。或是啟動時限制範圍。
+
+```
+$ minikube start --extra-config=apiserver.ServiceNodePortRange=<PORT-RANGE> # 1-50000
+```
