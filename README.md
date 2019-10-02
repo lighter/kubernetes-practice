@@ -126,3 +126,32 @@ NodePort 可指定 3000~32767。或是啟動時限制範圍。
 ```
 $ minikube start --extra-config=apiserver.ServiceNodePortRange=<PORT-RANGE> # 1-50000
 ```
+
+
+## Annotations
+
+主要方便開發者、系統管理者方便辨別
+
+```
+# 相關資訊會在裡面顯示
+$ kubectl describe pods <POD-NAME>
+
+# 動態新增 labels
+$ kubectl label pods <POD-NAME> <KEY=VALUE>
+```
+
+將 pod 部署到特定的 Node 上。先需要在 Node 貼上 label。
+
+```
+$ kubectl label node <NODE-NAME> <KEY=VALUE>
+
+# 取得 node 的 label
+$ kubectl get nodes --show-labels
+```
+
+再將 yaml 檔案加上
+
+```
+nodeSelector:
+    <KEY>: <VALUE>
+```

@@ -1,0 +1,19 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: my-annotation-pod
+  labels:
+    app: webserver
+    tier: backend
+  annotations:
+    version: latest
+    release_date: 2019/10/02
+    contact: 1qaz2wsx@gmail.com
+spec:
+  containers:
+  - name: annotation-demo
+    image: lighterlai/docker-demo
+    ports:
+    - containerPort: 3000
+  nodeSelector:
+    hardware: high-memory
