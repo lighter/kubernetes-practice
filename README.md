@@ -155,3 +155,18 @@ $ kubectl get nodes --show-labels
 nodeSelector:
     <KEY>: <VALUE>
 ```
+
+
+## Health check
+
+```
+livenessProbe:
+    httpGet:
+        path: /
+        port: webapp-port
+    initialDelaySeconds: 15
+    periodSeconds: 15
+    timeoutSeconds: 30
+    successThreshold: 1
+    failureThreshold: 3
+```
