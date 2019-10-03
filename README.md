@@ -170,3 +170,42 @@ livenessProbe:
     successThreshold: 1
     failureThreshold: 3
 ```
+
+
+## Secrets
+
+### 檔案的方式建立
+
+```
+$ kubectl create secret generic <POD-NAME> \
+--from-file=<FILE-NAME.txt> \
+--from-file=<FILE-NAME.txt> \
+
+# 再用 describe 查看
+$ kubectl describe secrets <POD-NAME>
+
+# 查看所有 secrets
+$ kubectl get secrets
+```
+
+### 指令的方式建立
+
+```
+$ kubectl create secret generic <POD-NAME> \
+--from-litteral=username=root \
+--from-litteral=password=rootpass
+```
+
+### 透過 yaml 方式建立
+
+可先將資料透過 base64 的方式編碼
+
+```
+$ echo -n "root" | base64
+```
+
+進到 pod 裡面查看 env 是否一至
+
+```
+$ kubectl exec -it <POD-NAME> -- /bin/bash
+```
