@@ -209,3 +209,19 @@ $ echo -n "root" | base64
 ```
 $ kubectl exec -it <POD-NAME> -- /bin/bash
 ```
+
+
+## ConfigMap
+
+### from file
+
+```
+$ kubectl create configmap <CONFIG-MAP-NAME> --from-file=<FILE-NAME>
+```
+
+### command
+
+```
+$ kubectl create configmap <CONFIG-MAP-NAME> --from-literal=ip=127.0.0.1
+$ kubectl describe configmap <CONFIG-MAP-NAME>
+```
