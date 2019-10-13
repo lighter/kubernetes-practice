@@ -225,3 +225,16 @@ $ kubectl create configmap <CONFIG-MAP-NAME> --from-file=<FILE-NAME>
 $ kubectl create configmap <CONFIG-MAP-NAME> --from-literal=ip=127.0.0.1
 $ kubectl describe configmap <CONFIG-MAP-NAME>
 ```
+
+## volumes
+
+1. emptyDir
+    1.1 暫時性儲存空間
+    1.2 containers 共用的資料夾
+2. hostPath
+    生命週期與 Node 相同
+3. cloud Storage
+    3.1 AWS EBS
+    3.2 Google Disk
+    3.3 Microsoft Azure Disk
+4. NFS(Network FileSystem)
