@@ -1,0 +1,9 @@
+apiVersion: storage.k8s.io/v1
+kind: StorageClass
+metadata:
+  name: standard
+provisioner: kubernetes.io/aws-ebd
+parameters:
+  type: gp2
+  zone: us-west-2
+reclaimPolicy: Delete
